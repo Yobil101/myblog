@@ -1,0 +1,35 @@
+<body class="cover">
+    {% extends 'base.html' %}
+    {% load static %}
+    {% block title %}!! Delete Post !!{% endblock %}
+    {% block content %}
+
+    <link rel="stylesheet" href="{% static 'blog/css/style.css' %}">
+    {% if user.is_authenticated %}
+        {% if user.id == post.author.id %}
+            <h1 style="color:Yellow;">Delete Post .....!</h1>
+                <div class="form-group">
+                    <form style="color:Yellow;" method="POST">
+                        {% csrf_token %}
+                        <strong>Are You Sure ?!!!!</strong><br/><br/>
+                        <button class="btn btn-danger">Delete</button>
+                        <a href="{% url 'home' %} " class="btn btn-secondary my-2">Back</a>
+
+                    </form>
+                </div>
+            <div class="myDiv">
+                <br/>
+                <h3 style="color:Yellow;">Delete: {{ post.title }}
+                    <div class="myDiv2 col1">{{ post.body|safe }}</div>
+                </h3><br/>
+            </div>
+        {% else %}
+            Error!!!!!!!!!!!!!!!!
+        {% endif %}
+    {% else %}
+
+    You are not allowed here!! (and you know it .....)
+
+    {% endif %}
+    {% endblock %}
+</body>

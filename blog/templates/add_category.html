@@ -1,0 +1,38 @@
+<body class="cover">
+    {% extends 'base.html' %}
+    {% load static %}
+    {% block title %}!! Developers !!{% endblock %}
+    {% block content %}
+
+    <link rel="stylesheet" href="{% static 'blog/css/style.css' %}">
+
+    <div class="D2 col3">
+        <center>
+            <table cellpadding="10" cellspacing="5">
+                <tr>
+                    <td><img src="/media/images/profile/indra.jpg" height="200px" width="200px"></td>
+                    <td><img src="/media/images/profile/biltu.jpg" height="200px" width="200px"></td>
+                    <td><img src="/media/images/profile/rohit.jfif" height="200px" width="200px"></td>
+
+                </tr>
+                <tr>
+                    <td><b>Indranil Bose </b><br> Lead Developer </td>
+                    <td><b>Biltu Saha </b><br> Lead Developer </td>
+                    <td><b>Rohit Kumar Shaw </b><br> Assistant Developer </td>
+
+                </tr>
+                <tr>
+                    <td><img src="/media/images/profile/amartya.jpg" height="200px" width="200px"></td>
+                    <td><img src="/media/images/profile/sagnik.jfif" height="200px" width="200px"></td>
+                </tr>
+                <tr>
+                    <td><b>Amartya Saha </b><br> Assistant Developer </td>
+                    <td><b>Sagnik Bhattacharya </b><br> Assistant Developer </td>
+                </tr>
+
+            </table>
+        </center>
+        </div>
+
+    {% endblock %}
+</body>

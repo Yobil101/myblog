@@ -1,0 +1,38 @@
+<body class="cover">
+        {% extends 'base.html' %}
+        {% load static %}
+        {% block title %}!! Add Post !!{% endblock %}
+        {% block content %}
+
+<link rel="stylesheet" href="{% static 'blog/css/style.css' %}">
+
+    {% if user.is_authenticated %}
+        <h1 style="color:Yellow;"><b>Add Post .....!</b></h1>
+
+    <br/>
+
+        <div class="myDiv1 col1">
+            <div class="form-group1">
+                <form style="color:black;" method="POST" enctype="multipart/form-data" >
+                    {% csrf_token %}
+                    {{ form.media }}
+                    {{ form.as_p }}
+                    <button class="btn btn-secondary">Post</button>
+                    <a href="{% url 'home' %} " class="btn btn-secondary my-2">Back</a>
+
+                </form>
+            </div>
+        </div>
+
+        <script>
+            var name = "{{ user.id }}";
+            document.getElementById("elder").value = name;
+        </script>
+    {% else %}
+
+    You are not allowed here!! (and you know it .....)
+
+    {% endif %}
+
+</body>
+    {% endblock %}

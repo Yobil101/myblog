@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<body class="cover">
+
+    <link rel="stylesheet" href="{% static 'blog/css/style.css' %}">
+    <h1 style="color:Yellow;"><b>All Posts <br></b></h1>
+    <div>
+    <ul class="jumbotron">
+        {% for post in object_list %}
+
+                <h5 class="display-4"><li><a href="{% url 'article-detail' post.pk %}">{{ post.title }} </a></h5>
+                <br><br><br>
+                <a href="{% url 'category' post.category %}"><strong>{{ post.category }}</strong></a> -  {{ post.author.first_name }}
+                {{ post.author.last_name }}   {{ post.post_date }}
+
+                {{ post.snippet }}
+                    {% if user.is_authenticated %}
+
+                        {% if user.id == post.author.id %}
+
+                           <small> <a class="btn btn-success" href="{% url 'update_post' post.pk %}">Edit</a>
+                               <a class="btn btn-danger" href="{% url 'delete_post' post.pk %}">X</a></small>
+
+                        {% endif %}
+
+                    {% endif %}
+
+                <br><br>
+                 </li>
+
+        {% endfor %}
+        </ul>
+
+    </div>
+
+</body>
+
+{% endblock %}

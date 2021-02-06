@@ -1,0 +1,91 @@
+<body class="cover">
+    {% extends 'base.html' %}
+    {% load static %}
+    {% block title %}{{ post.title }}{% endblock %}
+    {% block content %}
+
+    <link rel="stylesheet" href="{% static 'blog/css/style.css' %}">
+    <h1 style="color:Yellow;">{{ post.title }}</h1>
+    <strong>
+        <small style="background-color:#cfcccc;color:black;" class="btn btn-success"><b>By:</b>
+            {{ post.author.first_name }}
+            {{ post.author.last_name }} - {{ post.post_date }}
+            {% if user.is_authenticated %}</small>
+                {% if user.id == post.author.id %}
+                    <a class="btn btn-success" href="{% url 'update_post' post.pk %}">Edit</a>
+                    <a class="btn btn-danger" href="{% url 'delete_post' post.pk %}">X</a>
+                    <br/>
+    </strong>
+            {% endif %}
+        {% endif %}
+
+    <br/>
+    {% if post.header_image %}
+        <img src="{{ post.header_image.url }}">
+    {% endif %}
+
+    <br/><br/>
+    <div class="myDiv2 col1">
+        {{ post.body|safe }}
+    </div>
+    <br/><br/>
+    <a href="{% url 'home' %} " class="btn btn-warning">Back</a>
+
+    <br/><br/>
+    <br/>
+    <form style="color:Yellow;" action="{% url 'like_post' post.pk %}" method="POST">
+        {% csrf_token %}
+    {% if user.is_authenticated %}
+        {% if liked %}
+            <button type="submit", name="post_id", value="{{ post.id }}",
+                class="btn btn-danger btn-sm">UnLike</button>
+        {% else %}
+            <button type="submit", name="post_id", value="{{ post.id }}",
+                class="btn btn-primary btn-sm">Like</button>
+        {% endif %}
+    {% else %}
+        <a class="btn btn-danger" href="{% url 'login' %}">Login To Like</a>
+    {% endif %}
+        - {{ total_likes }} Likes
+    </form>
+
+    <br/><br/>
+
+    <div class="card border-success  mb-3">
+      <div class="row g-0">
+        <div class="col-md-2">
+            {% if post.author.profile.profile_pic %}
+                <img src="{{ post.author.profile.profile_pic.url }}" width="130" height="150">
+            {% else %}
+                <img src="{% static 'blog/images/profile.jpg' %}" width="130" height="150">
+            {% endif %}
+        </div>
+        <div class="col-md-10">
+          <div class="card-body">
+            <a href="{% url 'show_profile_page' post.author.profile.id %}">
+                <h5 class="card-title">{{ post.author.first_name }}
+                {{ post.author.last_name }}</h5></a>
+            <p class="small text-muted">
+                {% if post.author.profile.website_url %}
+                    <a href="{{ post.author.profile.website_url }}"> Website | </a>
+                {% endif %}
+                {% if post.author.profile.facebook_url %}
+                    <a href="{{ post.author.profile.facebook_url }}"> Facebook | </a>
+                {% endif %}
+                {% if post.author.profile.twitter_url %}
+                    <a href="{{ post.author.profile.twitter_url }}"> Twitter | </a>
+                {% endif %}
+                {% if post.author.profile.instagram_url %}
+                    <a href="{{ post.author.profile.instagram_url }}"> Instagram </a>
+                {% endif %}
+            </p>
+            <p class="card-text">{{ post.author.profile.bio }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    {% endblock %}
+</body>
