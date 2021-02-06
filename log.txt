@@ -1,0 +1,35 @@
+git push heroku master
+Enumerating objects: 116, done.
+Counting objects: 100% (116/116), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (108/108), done.
+Writing objects: 100% (116/116), 2.80 MiB | 954.00 KiB/s, done.
+Total 116 (delta 29), reused 0 (delta 0), pack-reused 0
+remote: Compressing source files... done.
+remote: Building source:
+remote:
+remote: -----> Building on the Heroku-20 stack
+remote: -----> App not compatible with buildpack: https://buildpack-registry.s3.amazonaws.com/buildpacks/heroku/python.tgz
+remote:        More info: https://devcenter.heroku.com/articles/buildpacks#detection-failure
+remote:
+remote:  !     Push failed
+remote:  !
+remote:  ! ## Warning - The same version of this code has already been built: fb6801ca857d78590ce3dd3aaf929954b2ad8af1
+remote:  !
+remote:  ! We have detected that you have triggered a build from source code with version fb6801ca857d78590ce3dd3aaf929954b2ad8af1
+remote:  ! at least twice. One common cause of this behavior is attempting to deploy code from a different branch.
+remote:  !
+remote:  ! If you are developing on a branch and deploying via git you must run:
+remote:  !
+remote:  !     git push heroku <branchname>:main
+remote:  !
+remote:  ! This article goes into details on the behavior:
+remote:  !   https://devcenter.heroku.com/articles/duplicate-build-version
+remote:
+remote: Verifying deploy...
+remote:
+remote: !       Push rejected to yobilblogdjango.
+remote:
+To https://git.heroku.com/yobilblogdjango.git
+ ! [remote rejected] master -> master (pre-receive hook declined)
+error: failed to push some refs to 'https://git.heroku.com/yobilblogdjango.git'
